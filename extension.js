@@ -2,8 +2,17 @@ const vscode = require('vscode');
 const { loadConfig, saveConfig } = require('./config');
 const { copyFileOrDirectoryToTemp, deleteFileOrDirectoryFromTemp, renameFileOrDirectoryInTemp } = require('./fileOperations');
 
+let resourcesFolder;
+let tempResourcesFolder;
+
+function updatePaths(context) {
+    const config = loadConfig(context);
+    resourcesFolder = config.resourcesFolder;
+    tempResourcesFolder = config.tempResourcesFolder;
+}
+
 function activate(context) {
-    const { resourcesFolder, tempResourcesFolder } = loadConfig(context);
+    updatePaths(context);
 
     let disposableSave = vscode.workspace.onDidSaveTextDocument((document) => {
         const filePath = document.uri.fsPath;
@@ -38,6 +47,7 @@ function activate(context) {
 
         if (resourcesPath && tempResourcesPath) {
             saveConfig(context, resourcesPath, tempResourcesPath);
+			updatePaths(context);
             vscode.window.showInformationMessage('Paths updated successfully.');
         } else {
             vscode.window.showErrorMessage('Paths not updated. Both paths must be provided.');
