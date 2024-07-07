@@ -13,9 +13,9 @@
   "main": "./extension.js",
   "contributes": {
     "commands": [{
-      "command": "copy-files-on-save.helloWorld",
-      "title": "Hello World"
-    }]
+      "command": "fileSyncOnSave.setPaths",
+      "title": "File Sync On Save: Set Paths"
+  }]
   },
   "scripts": {
     "lint": "eslint .",
