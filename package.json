@@ -3,6 +3,12 @@
   "displayName": "ResourcesAutoSyncer",
   "description": "Automatically synchronize files and directories between resources and temp_resources folders.",
   "version": "1.0.0",
+  "icon": "assets/logo.png",
+  "publisher": "zeghmouri",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zeghmouri/ResourcesAutoSyncerExtension"
+  },
   "engines": {
     "vscode": "^1.91.0"
   },
