@@ -32,7 +32,7 @@ function activate(context) {
         }
     });
 
-    let setPathsCommand = vscode.commands.registerCommand('fileSyncOnSave.setPaths', async () => {
+    let setPathsCommand = vscode.commands.registerCommand('resourcesAutoSyncer.setPaths', async () => {
         const resourcesPath = await vscode.window.showInputBox({ prompt: 'Enter the path to the resources folder' });
         const tempResourcesPath = await vscode.window.showInputBox({ prompt: 'Enter the path to the temp resources folder' });
 

@@ -1,8 +1,8 @@
 {
-  "name": "copy-files-on-save",
-  "displayName": "Copy Files on Save",
-  "description": "This extension will copy your files to a specific location when you hit Ctrl+S.",
-  "version": "0.0.1",
+  "name": "resources-auto-syncer",
+  "displayName": "ResourcesAutoSyncer",
+  "description": "Automatically synchronize files and directories between resources and temp_resources folders.",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.91.0"
   },
@@ -13,8 +13,8 @@
   "main": "./extension.js",
   "contributes": {
     "commands": [{
-      "command": "fileSyncOnSave.setPaths",
-      "title": "File Sync On Save: Set Paths"
+      "command": "resourcesAutoSyncer.setPaths",
+      "title": "ResourcesAutoSyncer : Set Paths"
   }]
   },
   "scripts": {
