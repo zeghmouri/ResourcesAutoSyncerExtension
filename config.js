@@ -1,6 +1,10 @@
 const vscode = require('vscode');
 const path = require('path');
 
+function normalizePath(filePath) {
+    return process.platform === 'win32' ? filePath.toLowerCase() : filePath;
+}
+
 function loadConfig(context) {
     const workspaceFolders = vscode.workspace.workspaceFolders;
     if (!workspaceFolders) return {};
@@ -18,6 +22,7 @@ function saveConfig(context, resourcesFolder, tempResourcesFolder) {
 }
 
 module.exports = {
+    normalizePath,
     loadConfig,
     saveConfig
 };

@@ -2,8 +2,16 @@ const fs = require('fs');
 const path = require('path');
 const vscode = require('vscode');
 
+// Normalize paths to lower case on Windows only
+function normalizePath(filePath) {
+    return process.platform === 'win32' ? filePath.toLowerCase() : filePath;
+}
+
 function copyFileOrDirectoryToTemp(filePath, resourcesFolder, tempResourcesFolder) {
-    if (filePath.startsWith(resourcesFolder)) {
+    const normalizedFilePath = normalizePath(filePath);
+    const normalizedResourcesFolder = normalizePath(resourcesFolder);
+
+    if (normalizedFilePath.startsWith(normalizedResourcesFolder)) {
         const relativePath = path.relative(resourcesFolder, filePath);
         const tempFilePath = path.join(tempResourcesFolder, relativePath);
 
@@ -36,7 +44,10 @@ function copyFileOrDirectoryToTemp(filePath, resourcesFolder, tempResourcesFolde
 }
 
 function deleteFileOrDirectoryFromTemp(filePath, resourcesFolder, tempResourcesFolder) {
-    if (filePath.startsWith(resourcesFolder)) {
+    const normalizedFilePath = normalizePath(filePath);
+    const normalizedResourcesFolder = normalizePath(resourcesFolder);
+
+    if (normalizedFilePath.startsWith(normalizedResourcesFolder)) {
         const relativePath = path.relative(resourcesFolder, filePath);
         const tempFilePath = path.join(tempResourcesFolder, relativePath);
 
@@ -70,7 +81,10 @@ function deleteFileOrDirectoryFromTemp(filePath, resourcesFolder, tempResourcesF
 }
 
 function renameFileOrDirectoryInTemp(oldFilePath, newFilePath, resourcesFolder, tempResourcesFolder) {
-    if (oldFilePath.startsWith(resourcesFolder)) {
+    const normalizedOldFilePath = normalizePath(oldFilePath);
+    const normalizedResourcesFolder = normalizePath(resourcesFolder);
+
+    if (normalizedOldFilePath.startsWith(normalizedResourcesFolder)) {
         const relativeOldPath = path.relative(resourcesFolder, oldFilePath);
         const tempOldFilePath = path.join(tempResourcesFolder, relativeOldPath);
         const relativeNewPath = path.relative(resourcesFolder, newFilePath);
